@@ -1,13 +1,13 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - private.yml
+    - "{{ private }}"
 
   tasks:
     - name: Gather vmware host facts
       vmware_host_facts:
-        hostname: 172.16.2.231
-        username: root
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
         password: "{{ password }}"
         validate_certs: False
       register: host_facts
