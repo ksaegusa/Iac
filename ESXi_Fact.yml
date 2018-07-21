@@ -1,8 +1,5 @@
 - hosts: localhost
   connection: local
-  become: true
-  become_user: root
-  gather_facts: no
   vars_files:
     - private.yml
 
