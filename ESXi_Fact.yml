@@ -1,0 +1,21 @@
+- hosts: localhost
+  connection: local
+  become: true
+  become_user: root
+  gather_facts: no
+  vars_files:
+    - private.yml
+
+  tasks:
+    - name: Gather vmware host facts
+      vmware_host_facts:
+        hostname: 172.16.2.231
+        username: root
+        password: "{{ password }}"
+        validate_certs: False
+      register: host_facts
+      delegate_to: localhost
+
+    - name: debug
+      debug:
+       msg: "{{ host_facts }}"
