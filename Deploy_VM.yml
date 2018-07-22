@@ -1,0 +1,38 @@
+- hosts: localhost
+  vars_files:
+  - private.yml
+
+  tasks:
+    - name: Test
+      vsphere_guest:
+        vcenter_hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        guest: "{{ guest }}"
+        state: present
+        validate_certs: no
+        esxi:
+          datacenter: ha-datacenter
+          hostname: localhost.localdomain
+
+        vm_extra_config:
+          notes: This is a test VM
+        vm_disk:
+          disk1:
+            size_gb: "{{ size_gb }}"
+            type: thin
+            datastore: datastore1
+        vm_nic:
+          nic1:
+            type: vmxnet3
+            network: VM Network
+            network_type: standard
+        vm_hardware:
+          memory_mb: "{{ memory_mb }}"
+          num_cpus: "{{ num_cpus }}"
+          osid: rhel6_64Guest
+          scsi: paravirtual
+          vm_cdrom:
+            type: "iso"
+            iso_path: "{{ iso_path }}"
+
