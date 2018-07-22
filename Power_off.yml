@@ -1,0 +1,17 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - private.yml
+
+  tasks:
+    - name: Boot up instance
+      vsphere_guest:
+        vcenter_hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}" 
+        guest: "{{ username }}"
+        state: "{{ power }}"
+        validate_certs: False
+        esxi:
+          datacenter: ha-datacenter
+          hostname: "{{ hostname }}"
