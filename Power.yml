@@ -9,7 +9,7 @@
         vcenter_hostname: "{{ hostname }}"
         username: "{{ username }}"
         password: "{{ password }}" 
-        guest: "{{ username }}"
+        guest: "{{ guest }}"
         state: "{{ power }}"
         validate_certs: False
         esxi:
