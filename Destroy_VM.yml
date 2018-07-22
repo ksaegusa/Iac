@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - private.yml
+
+  tasks:
+    - name: Destroy instance
+      vsphere_guest:
+        vcenter_hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        guest: "{{ guest }}"
+        state: absent
+        validate_certs: False
+        force: yes
