@@ -29,7 +29,7 @@
             network: VM Network
             network_type: standard
           nic2:
-            type: vmnet3
+            type: vmxnet3
             network: VM Network 1
             network_type: standard
         vm_hardware:
