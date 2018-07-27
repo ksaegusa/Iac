@@ -1,4 +1,5 @@
 - hosts: all
+  ansible_user: root
   ansible_password: "{{ password }}"
  
   tasks:
