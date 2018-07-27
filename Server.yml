@@ -1,6 +1,8 @@
 - hosts: all
-  ansible_user: root
-  ansible_password: "{{ password }}"
+
+  vars:
+    ansible_user: root
+    ansible_password: "{{ password }}"
  
   tasks:
      - name: Serviceのインストール
