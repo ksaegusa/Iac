@@ -1,5 +1,6 @@
 - hosts: all
-  password: "{{ password }}"
+  vars:
+    password: "{{ password }}"
  
   tasks:
      - name: Serviceのインストール
