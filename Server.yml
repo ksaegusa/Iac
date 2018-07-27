@@ -1,6 +1,3 @@
-
-- hosts: all
-  
   tasks:
     - name: Serviceのインストール
       yum: name="{{ service }}" state=latest
