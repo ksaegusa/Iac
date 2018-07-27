@@ -1,0 +1,9 @@
+
+- hosts: all
+  
+  tasks:
+    - name: "{{ service }}"のインストール
+      yum: name="{{ service }}" state=latest
+      
+    - name: "{{ service }}"の起動設定
+      service: name="{{ service }}" state=started enabled=yes
