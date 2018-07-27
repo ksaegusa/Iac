@@ -1,4 +1,7 @@
-  tasks:
+- hosts: localhost
+  connection: local 
+ 
+ tasks:
     - name: Serviceのインストール
       yum: name="{{ service }}" state=latest
       
