@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - private.yml
+
+  tasks:
+    - name: Gather all registered virtual machines
+      vmware_vm_facts:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+      delegate_to: localhost
+      register: vmfacts
+
+    - name: debug
+      debug:
+        msg:  "{{ vmfacts }}"
+
