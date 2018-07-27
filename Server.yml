@@ -1,9 +1,9 @@
 - hosts: localhost
   connection: local 
  
- tasks:
-    - name: Serviceのインストール
-      yum: name="{{ service }}" state=latest
-      
-    - name: Serviceの起動設定
-      service: name="{{ service }}" state=started enabled=yes
+  tasks:
+     - name: Serviceのインストール
+       yum: name="{{ service }}" state=latest
+       
+     - name: Serviceの起動設定
+       service: name="{{ service }}" state=started enabled=yes
