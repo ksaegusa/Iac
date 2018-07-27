@@ -1,6 +1,5 @@
 - hosts: all
-  vars:
-    password: "{{ password }}"
+  ansible_password: "{{ password }}"
  
   tasks:
      - name: Serviceのインストール
