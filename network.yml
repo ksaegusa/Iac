@@ -5,7 +5,7 @@
     ansible_password: "{{ password }}"
     
   tasks:
-  - command: nmcli connection modify 'System "{{ nic }}"' ipv4.method manual ipv4.addresses "{{ new_addr }}/{{ prefix }}" ipv4.gateway "{{ gateway }}" ipv4.dns "{{ dns }}"
+  - command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "{{ new_addr }}/{{ prefix }}" ipv4.gateway "{{ gateway }}" ipv4.dns "{{ dns }}"
   - shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
   - service: name=network state=restarted enabled=yes
     delegate_to: localhost
