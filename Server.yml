@@ -9,4 +9,4 @@
        yum: name="{{ service }}" state=latest
        
      - name: Serviceの起動設定
-       service: name="{{ service }}" state=started enabled=yes
+       service: name="{{ daemon }}" state=started enabled=yes
