@@ -35,12 +35,14 @@
   #  command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "{{ new_addr }}/{{ prefix }}" ipv4.gateway "{{ gateway }}" ipv4.dns "{{ dns }}"
   #  shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
 
-  - name: Start Service
+  - name: Start Squid
     systemd:
-     name: "{{ packages }}"
+     name: squid
      state: started
      enabled: yes
-    vars:
-     packages:
-       - ntpd
-       - squid
+
+  - name: Start NTP
+    systemd:
+     name: ntpd
+     state: started
+     enabled: yes
