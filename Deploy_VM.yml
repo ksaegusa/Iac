@@ -4,13 +4,13 @@
   - private.yml
 
   tasks:
-    - name: Test
+    - name: Deploy_VM
       vsphere_guest:
         vcenter_hostname: "{{ hostname }}"
         username: "{{ username }}"
         password: "{{ password }}"
         guest: "{{ guest }}"
-        state: present
+        state: powered_on
         validate_certs: no
         esxi:
           datacenter: ha-datacenter
