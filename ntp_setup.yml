@@ -22,9 +22,9 @@
      packages:
        - ntp
 
-  - name: set_config
+  - name: set_ntp_config
     template:
-     src: squid.conf
+     src: ntp.conf
      dest: /etc/ntp.conf
      follow: yes
      mode: 0644
