@@ -26,8 +26,8 @@
 
   - name: set_config
     template:
-     src: squid.conf
-     dest: /etc/squid/squid.conf
+     src: httpd.conf
+     dest: /etc/httpd/conf/httpd.conf
      follow: yes
      mode: 0644
 
