@@ -38,11 +38,11 @@
   - name: Start Squid
     systemd:
      name: squid
-     state: started
+     state: restarted
      enabled: yes
 
   - name: Start NTP
     systemd:
      name: ntpd
-     state: started
+     state: restarted
      enabled: yes
