@@ -1,0 +1,54 @@
+---
+- hosts: all
+  gather_facts: no
+  become: true
+
+  vars:
+    ansible_user: "{{ username }}"
+    ansible_password: "{{ password }}"
+    nic: ens192
+
+  tasks:
+  - name: yum_update
+    yum:
+     name: '*'
+    state: latest
+
+  - name: install package
+    yum:
+     name: "{{ packages }}"
+     state: present
+    vars:
+     packages:
+       - ntp
+       - squid
+
+  - name: set_config
+    template:
+     src: squid.conf
+     dest: /etc/squid/squid.conf
+     follow: yes
+     mode: 0644
+     
+  - name: set_ntpd_config
+    template:
+     src: client_ntp.conf
+     dest: /etc/ntp.conf
+     follow: yes
+     mode: 0644 
+
+  - name: set_interface
+    command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.31/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
+    shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
+
+  - name: Start Squid
+    systemd:
+     name: squid
+     state: restarted
+     enabled: yes
+
+  - name: Start NTP
+    systemd:
+     name: ntpd
+     state: restarted
+     enabled: yes
