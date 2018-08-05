@@ -29,6 +29,13 @@
      dest: /etc/squid/squid.conf
      follow: yes
      mode: 0644
+     
+  - name: set_ntpd_config
+    template:
+     src: client_ntp.conf
+     dest: /etc/ntp.conf
+     follow: yes
+     mode: 0644 
 
   #- name: set_interface
   #  command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "{{ new_addr }}/{{ prefix }}" ipv4.gateway "{{ gateway }}" ipv4.dns "{{ dns }}"
