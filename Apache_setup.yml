@@ -38,9 +38,11 @@
      follow: yes
      mode: 0644 
 
-  #- name: set_interface
-  #  command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.21/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
-  #  shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
+  - name: set_interface
+    command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.21/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
+
+  - name: restart_interface
+    shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
 
   - name: Start Squid
     systemd:
