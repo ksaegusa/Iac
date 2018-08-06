@@ -6,7 +6,7 @@
   vars:
     ansible_user: "{{ username }}"
     ansible_password: "{{ password }}"
-    nic: ens192
+    nic: ens224
 
   tasks:
   - name: yum_update
