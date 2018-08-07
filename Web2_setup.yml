@@ -42,7 +42,7 @@
     cmd: firewall-cmd --permanent --zone=public --add-rich-rule="rule family="ipv4" source address={{ proxy_ip }} port protocol="tcp" port={{ web_port }} accept"
     
   - name: reload_firewalld
-    cmd: systemctrl reload firewalld
+    cmd: systemctrl restart firewalld
 
   #- name: set_interface
   #  command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.21/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
