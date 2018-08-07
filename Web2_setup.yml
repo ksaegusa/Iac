@@ -26,7 +26,7 @@
 
   - name: set_httpd_config
     template:
-     src: web2_httpd.conf
+     src: Web2_httpd.conf
      dest: /etc/httpd/conf/httpd.conf
      follow: yes
      mode: 0644
