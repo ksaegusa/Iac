@@ -15,5 +15,5 @@
 
     - name: debug
       debug:
-        msg:  "{{ vmfacts.virtual_machines.item }}"
+        msg:  "{{ vmfacts.virtual_machines }}"
 
