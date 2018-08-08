@@ -22,6 +22,12 @@
      packages:
        - ntp
        - squid
+       
+  - name: stop firewalld
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: false
 
   - name: set_config
     template:
