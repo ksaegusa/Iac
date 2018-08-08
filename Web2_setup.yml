@@ -7,7 +7,7 @@
     ansible_user: "{{ username }}"
     ansible_password: "{{ password }}"
     port: 80
-    nic: ens192
+    nic: ens224
 
   tasks:
   - name: yum_update
