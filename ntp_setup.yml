@@ -13,6 +13,13 @@
     yum:
      name: '*'
     state: latest
+    
+    
+  - name: firewalldのstop
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: false
 
   - name: install package
     yum:
