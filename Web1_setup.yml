@@ -1,0 +1,63 @@
+---
+- hosts: all
+  gather_facts: no
+  become: true
+
+  vars:
+    ansible_user: "{{ username }}"
+    ansible_password: "{{ password }}"
+    port: 80
+    nic: ens224
+
+  tasks:
+  - name: yum_update
+    yum:
+     name: '*'
+    state: latest
+
+  - name: install package
+    yum:
+     name: "{{ packages }}"
+     state: present
+    vars:
+     packages:
+       - ntp
+       - httpd
+
+  - name: set_httpd_config
+    template:
+     src: Web1_httpd.conf
+     dest: /etc/httpd/conf/httpd.conf
+     follow: yes
+     mode: 0644
+     
+  - name: set_ntpd_config
+    template:
+     src: client_ntp.conf
+     dest: /etc/ntp.conf
+     follow: yes
+     mode: 0644
+  
+  - name: set_firewalld
+    command: firewall-cmd --add-service=http --permanent
+    
+  - name: reload_firewalld
+    command: firewall-cmd --reload
+    
+  - name: set_interface
+    command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.100/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
+ 
+  - name: restart_interface
+    shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
+
+  - name: Start Squid
+    systemd:
+     name: httpd
+     state: restarted
+     enabled: yes
+
+  - name: Start NTP
+    systemd:
+     name: ntpd
+     state: restarted
+     enabled: yes
