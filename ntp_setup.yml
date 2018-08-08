@@ -15,7 +15,7 @@
     state: latest
     
     
-  - name: firewalldのstop
+  - name: stop firewalld
     systemd:
       name: firewalld
       state: stopped
