@@ -45,7 +45,7 @@
     command: firewall-cmd --zone=public --add-rich-rule="rule family="ipv4" port protocol="tcp" port={{ web_port }} accept"
     
   - name: set_interface
-    command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.100/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
+    command: nmcli connection modify 'System {{ nic }}' ipv4.method manual ipv4.addresses "192.168.1.21/24" ipv4.gateway "192.168.1.11" ipv4.dns "192.168.1.11"
  
   - name: restart_interface
     shell: sleep 1; ifdown {{ nic }} && ifup {{ nic }}
