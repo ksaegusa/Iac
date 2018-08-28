@@ -26,15 +26,15 @@
         vm_nic:
           nic1:
             type: vmxnet3
-            network: VM Network 1
+            network: MGT
             network_type: standard
           nic2:
             type: vmxnet3
-            network: VM Network
+            network: INT
             network_type: standard
           nic3:
             type: vmxnet3
-            network: VM Network 2
+            network: DMZ
             network_type: standard
             
         vm_hardware:
